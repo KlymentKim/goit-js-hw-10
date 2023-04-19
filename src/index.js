@@ -1,7 +1,10 @@
 import './css/styles.css';
 import axios from 'axios';
 import debounce from 'lodash.debounce';
+// import * as say from './fetchCountries';
+import { fetchCountries } from './fetchCountries';
 
+say.fetchCountries();
 const DEBOUNCE_DELAY = 300;
 
 // const urlLink = 'https://restcountries.com/v3.1/name/{name}';

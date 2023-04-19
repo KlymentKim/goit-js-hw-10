@@ -1,8 +1,4 @@
-import './css/styles.css';
-import axios from 'axios';
 import debounce from 'lodash.debounce';
-const DEBOUNCE_DELAY = 300;
-
 
 const fetchCountries = debounce(async (searchQuery, callback) => {
   if (!searchQuery.trim()) 
