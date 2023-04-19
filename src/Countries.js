@@ -8,6 +8,7 @@ const searchBox = document.querySelector('#search-box');
 const countryList = document.querySelector('.country-list');
 const countryInfo = document.querySelector('.country-info');
 
+
 // Функція для виконання HTTP-запиту до API Rest Countries
 const searchCountry = (name) => {
   const url = `https://restcountries.com/v2/name/${name}?fields=name,capital,population,flags.svg,languages`;

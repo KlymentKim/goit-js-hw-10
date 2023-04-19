@@ -19,7 +19,7 @@ searchBox.addEventListener('input', _.debounce(() => {
       })
       .then(countries => {
         if (countries.length > 10) {
-          notiflix.Notify.info('Too many matches found. Please enter a more specific name.');
+          Notify.info('Too many matches found. Please enter a more specific name.');
         } else if (countries.length > 1) {
           countryList.innerHTML = countries.map(country => `
             <li>
@@ -39,7 +39,7 @@ searchBox.addEventListener('input', _.debounce(() => {
             <img src="${country.flags.svg}" alt="Flag of ${country.name.official}" />
           `;
         } else {
-          notiflix.Notify.info('Oops, there is no country with that name.');
+          Notify.info('Oops, there is no country with that name.');
           countryList.innerHTML = '';
           countryInfo.innerHTML = '';
         }
