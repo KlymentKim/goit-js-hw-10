@@ -11,6 +11,9 @@ const searchBox = document.getElementById('search-box');
 const countryList = document.querySelector('.country-list');
 const countryInfo = document.querySelector('.country-info');
 
+
+
+
 searchBox.addEventListener('input', debounce(onSearchInput, 300));
 
 function onSearchInput(event) {
