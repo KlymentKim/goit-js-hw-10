@@ -1,20 +1,17 @@
 import './css/styles.css';
-import axios from 'axios';
 import debounce from 'lodash.debounce';
-// import * as say from './fetchCountries';
-import { fetchCountries } from './fetchCountries';
 
-say.fetchCountries();
+// import { fetchCountries } from './fetchCountries';
+// say.fetchCountries();
 const DEBOUNCE_DELAY = 300;
 
-// const urlLink = 'https://restcountries.com/v3.1/name/{name}';
-const urlLink = `https://restcountries.com/v2/name/${searchBox}`;
+// 
 
 const searchBox = document.getElementById('search-box');
 const countryList = document.querySelector('.country-list');
 const countryInfo = document.querySelector('.country-info');
-
-
+const urlLink = `https://restcountries.com/v3.1/name/aruba?fullText=true${searchBox}`;
+// const urlLink2 = `https://restcountries.com/v3.1/name/${searchBox}`;
 
 
 searchBox.addEventListener('input', debounce(onSearchInput, 300));
@@ -86,5 +83,7 @@ function renderCountryInfo(country) {
     <h2>${country.name.official}</h2>
     <p>Capital: ${country.capital}</p>
     <p>Population: ${country.population}</p>
-    <img src="${country.flags.svg}" alt="${country.name.official}" width="128px" height="128px"/>`
+    <p>Language: ${languages}</p>
+    <img src="${country.flags.svg}" alt="${country.name.official}" width="128px" height="128px"/>
+    `
 }
