@@ -1,11 +1,13 @@
 import './css/styles.css';
 import debounce from 'lodash.debounce';
+import axios from 'axios';
 import Notiflix from 'notiflix';
+import { fetchCountries } from './fetchCountries';
 
 // import { fetchCountries } from './fetchCountries';
 // say.fetchCountries();
 // const DEBOUNCE_DELAY = 300;
-// const urlLink = `https://restcountries.com/v3.1/name/aruba?fullText=true${searchBox}`;
+
 
 const searchBox = document.getElementById('search-box');
 const countryList = document.querySelector('.country-list');
@@ -24,11 +26,12 @@ function onSearchInput(event) {
     return;
   }
 
-  fetch(`${url}${query}?fields=name.official;capital;population;flags.svg;languages`)
+  fetch(`${url}${query}?fields=name;capital;population;flags;languages`)
     .then(response => response.json())
     .then(data => {
       if (data.length > 10) {
         Notiflix.Notify.info('Too many matches found. Please enter a more specific name.');
+        renderCountryInfo(data[0]);
         clearResults();
         return;
       }

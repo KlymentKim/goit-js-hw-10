@@ -1,5 +1,5 @@
-import debounce from 'lodash.debounce';
-import axios from 'axios';
+
+
 const fetchCountries = debounce(async (searchQuery, callback) => {
   if (!searchQuery.trim()) 
   return; // якщо поле пошуку пусте, повернути порожній масив
@@ -25,3 +25,14 @@ export default fetchCountries;
 // }
 
 // export { fetchCountries };
+
+// export const fetchCountries = name => {
+//   return fetch(
+//     `https://restcountries.com/v2/name/${name}?fields=name;capital;population;flags.svg;languages`
+//   ).then(response => {
+//     if (response.ok) {
+//       return response.json();
+//     }
+//     throw new Error(response.statusText);
+//   });
+// };
