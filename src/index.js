@@ -1,5 +1,6 @@
 import './css/styles.css';
 import debounce from 'lodash.debounce';
+import Notiflix from 'notiflix';
 
 // import { fetchCountries } from './fetchCountries';
 // say.fetchCountries();
@@ -9,8 +10,8 @@ const DEBOUNCE_DELAY = 300;
 const searchBox = document.getElementById('search-box');
 const countryList = document.querySelector('.country-list');
 const countryInfo = document.querySelector('.country-info');
-const urlLink = `https://restcountries.com/v3.1/name/aruba?fullText=true${searchBox}`;
-// const urlLink2 = `https://restcountries.com/v3.1/name/${searchBox}`;
+// const urlLink = `https://restcountries.com/v3.1/name/aruba?fullText=true${searchBox}`;
+const urlLink2 = `https://restcountries.com/v3.1/name/${searchBox}`;
 
 
 searchBox.addEventListener('input', debounce(onSearchInput, 300));
