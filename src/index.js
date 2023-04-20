@@ -4,8 +4,6 @@ import axios from 'axios';
 import Notiflix from 'notiflix';
 import { fetchCountries } from './fetchCountries';
 
-// import { fetchCountries } from './fetchCountries';
-// say.fetchCountries();
 // const DEBOUNCE_DELAY = 300;
 
 
