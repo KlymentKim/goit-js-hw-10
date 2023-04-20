@@ -4,7 +4,7 @@ import Notiflix from 'notiflix';
 
 // import { fetchCountries } from './fetchCountries';
 // say.fetchCountries();
-const DEBOUNCE_DELAY = 300;
+// const DEBOUNCE_DELAY = 300;
 
 
 const searchBox = document.getElementById('search-box');
