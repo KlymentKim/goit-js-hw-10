@@ -5,12 +5,12 @@ import Notiflix from 'notiflix';
 // import { fetchCountries } from './fetchCountries';
 // say.fetchCountries();
 // const DEBOUNCE_DELAY = 300;
-
+// const urlLink = `https://restcountries.com/v3.1/name/aruba?fullText=true${searchBox}`;
 
 const searchBox = document.getElementById('search-box');
 const countryList = document.querySelector('.country-list');
 const countryInfo = document.querySelector('.country-info');
-// const urlLink = `https://restcountries.com/v3.1/name/aruba?fullText=true${searchBox}`;
+
 const url = `https://restcountries.com/v3.1/name/${searchBox}`;
 
 
