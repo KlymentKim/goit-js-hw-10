@@ -11,7 +11,7 @@ const searchBox = document.getElementById('search-box');
 const countryList = document.querySelector('.country-list');
 const countryInfo = document.querySelector('.country-info');
 // const urlLink = `https://restcountries.com/v3.1/name/aruba?fullText=true${searchBox}`;
-const urlLink2 = `https://restcountries.com/v3.1/name/${searchBox}`;
+const url = `https://restcountries.com/v3.1/name/${searchBox}`;
 
 
 searchBox.addEventListener('input', debounce(onSearchInput, 300));
@@ -24,7 +24,7 @@ function onSearchInput(event) {
     return;
   }
 
-  fetch(`${urlLink}${query}?fields=name.official;capital;population;flags.svg;languages`)
+  fetch(`${url}${query}?fields=name.official;capital;population;flags.svg;languages`)
     .then(response => response.json())
     .then(data => {
       if (data.length > 10) {
@@ -71,7 +71,7 @@ function onCountryListClick(event) {
 
   const countryName = target.querySelector('span').textContent;
 
-  fetch(`${urlLink}${countryName}?fields=name.official;capital;population;flags.svg;languages`)
+  fetch(`${url}${countryName}?fields=name.official;capital;population;flags.svg;languages`)
     .then(response => response.json())
     .then(data => renderCountryInfo(data[0]))
     .catch(error => console.log(error));
