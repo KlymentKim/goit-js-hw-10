@@ -23,6 +23,7 @@ function onSearchInput(event) {
   fetch(`${url}${query}?fields=name,capital,population,flags,languages`)
     .then(response => response.json())
     .then(data => {
+
       if (data.length > 10) {
         Notiflix.Notify.info('Too many matches found. Please enter a more specific name.');
         renderCountryInfo(data[0]);
@@ -36,18 +37,13 @@ function onSearchInput(event) {
       }
 
          // Перевірка наявності результатів пошуку
-      if (data.length === 0) {
-        // Відображення повідомлення про помилку
+          if (data.length === 0) {
+        renderCountryInfo(data[0]);
         Notiflix.Notify.failure('Oops, there is no country with that name');
         return;
       }
 
-      if (data.length === 1) {
-        renderCountryInfo(data[0]);
-        return;
-      }
-
-      clearResults();
+      // clearResults();
     })
     .catch(error => console.log(error));
 }
@@ -61,11 +57,9 @@ function renderCountryList(countries) {
   countryInfo.innerHTML = '';
   countryList.innerHTML = countries.map(country => `
     <li>
-      <img src="${country.flags.svg}" alt="${country.name.official}" width="128px" height="128px">
-      <p>${country.name.official}</p>
-      <p>Capital: ${country.capital}</p>
-      <p>Population: ${country.population}</p>
-      </li>
+      <img src="${country.flags.svg}" alt="${country.name.official}" width="32" height="32">
+      <span>${country.name.official}</span>
+    </li>
   `).join('');
 
   countryList.addEventListener('click', onCountryListClick);

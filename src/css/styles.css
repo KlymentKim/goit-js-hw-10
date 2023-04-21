@@ -69,3 +69,9 @@ input[type="text"] {
   font-size: 16px;
   line-height: 1.5;
 }
+.img{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
