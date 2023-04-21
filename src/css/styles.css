@@ -37,14 +37,13 @@ input[type="text"] {
 }
 
 .country-list {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
   list-style-type: none;
   padding: 0;
   margin: 0;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
-}
+  }
 
 .country-item {
   margin: 10px;

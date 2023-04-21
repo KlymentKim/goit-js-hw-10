@@ -24,7 +24,7 @@ function onSearchInput(event) {
     .then(response => response.json())
     .then(data => {
       if (data.length > 10) {
-        Notify.info('Too many matches found. Please enter a more specific name.');
+        Notiflix.Notify.info('Too many matches found. Please enter a more specific name.');
         renderCountryInfo(data[0]);
         clearResults();
         return;
@@ -32,6 +32,13 @@ function onSearchInput(event) {
 
       if (data.length >= 2 && data.length <= 10) {
         renderCountryList(data);
+        return;
+      }
+
+         // Перевірка наявності результатів пошуку
+      if (data.length === 0) {
+        // Відображення повідомлення про помилку
+        Notiflix.Notify.failure('Oops, there is no country with that name');
         return;
       }
 
@@ -54,9 +61,11 @@ function renderCountryList(countries) {
   countryInfo.innerHTML = '';
   countryList.innerHTML = countries.map(country => `
     <li>
-      <img src="${country.flags.svg}" alt="${country.name.official}" width="32px" height="20px">
-      <span>${country.name.official}</span>
-    </li>
+      <img src="${country.flags.svg}" alt="${country.name.official}" width="128px" height="128px">
+      <p>${country.name.official}</p>
+      <p>Capital: ${country.capital}</p>
+      <p>Population: ${country.population}</p>
+      </li>
   `).join('');
 
   countryList.addEventListener('click', onCountryListClick);
@@ -75,7 +84,7 @@ function onCountryListClick(event) {
 }
 
 function renderCountryInfo(country) {
-    countryList.innerHTML = '';
+    // countryList.innerHTML = '';
     countryInfo.innerHTML = `
     <h2>${country.name.official}</h2>
     <p>Capital: ${country.capital}</p>
