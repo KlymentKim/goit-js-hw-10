@@ -29,8 +29,14 @@ function handleSearch() {
         countriesList.innerHTML = '';
         return;
       }
+      if (data.legth === 0) {
+          Notify.error('Oops, there is no country with that name.');
+          countriesList.innerHTML = '';
+          return;
+      }
 
       const countriesMarkup = data
+        
         .map(country => `
           <li class="country-item">
             <h2>${country.name.official}</h2>
@@ -42,6 +48,7 @@ function handleSearch() {
         `)
         .join('');
 
+      countriesList.innerHTML = '';
       countriesList.innerHTML = countriesMarkup;
     })
     .catch(error => console.error(error));
