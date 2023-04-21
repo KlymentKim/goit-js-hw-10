@@ -22,7 +22,7 @@ function onSearchInput(event) {
     return;
   }
 
-  fetch(`${url}${query}?fields=name,capital,population,flags,languages`)
+  fetch(`${url}${query}?fields=name,capital,population,flags.svg,languages`)
     .then(response => response.json())
     .then(data => {
       if (data.length > 10) {
