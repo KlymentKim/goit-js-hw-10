@@ -42,8 +42,8 @@ function handleSearch() {
             <h2>${country.name.official}</h2>
             <p>Capital: ${country.capital}</p>
             <p>Population: ${country.population}</p>
-            <p>Language: ${languages}</p>
             <img src="${country.flags.svg}" alt="${country.name.official}" width="128px" height="128px"/>
+            <p>Language: ${languages}</p>
           </li>
         `)
         .join('');
