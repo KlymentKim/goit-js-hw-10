@@ -1,11 +1,11 @@
-function fetchCountries(name) {
-  return fetch(`https://restcountries.com/v2/name/${name}?fields=name.official,capital,population,flags.svg,languages`)
-    .then(response => response.json())
-    .then(data => data)
-    .catch(error => console.error(error));
-}
+// function fetchCountries(name) {
+//   return fetch(`https://restcountries.com/v2/name/${name}?fields=name.official,capital,population,flags.svg,languages`)
+//     .then(response => response.json())
+//     .then(data => data)
+//     .catch(error => console.error(error));
+// }
 
-export { fetchCountries };
+// export { fetchCountries };
 
   
   
