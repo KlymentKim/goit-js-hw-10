@@ -26,7 +26,7 @@ function onSearchInput(event) {
     .then(response => response.json())
     .then(data => {
       if (data.length > 10) {
-        Notiflix.Notify.info('Too many matches found. Please enter a more specific name.');
+        Notify.info('Too many matches found. Please enter a more specific name.');
         renderCountryInfo(data[0]);
         clearResults();
         return;
