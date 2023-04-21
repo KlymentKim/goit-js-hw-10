@@ -13,7 +13,6 @@ const countryInfo = document.querySelector('.country-info');
 
 const url = `https://restcountries.com/v3.1/name/${searchBox}`;
 
-
 searchBox.addEventListener('input', debounce(onSearchInput, 300));
 
 function onSearchInput(event) {

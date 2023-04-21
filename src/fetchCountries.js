@@ -19,18 +19,18 @@
 // export default fetchCountries;
 
 // fetchCountries.js
-export const fetchCountries = async (name) => {
-  try {
-    const response = await fetch(`https://restcountries.com/v2/name/${name}?fields=name;capital;population;flags.svg;languages`);
-    if (!response.ok) {
-      throw new Error(response.status);
-    }
-    const countries = await response.json();
-    return countries;
-  } catch (error) {
-    throw new Error(`HTTP error: ${error}`);
-  }
-};
+// export const fetchCountries = async (name) => {
+//   try {
+//     const response = await fetch(`https://restcountries.com/v2/name/${name}?fields=name;capital;population;flags.svg;languages`);
+//     if (!response.ok) {
+//       throw new Error(response.status);
+//     }
+//     const countries = await response.json();
+//     return countries;
+//   } catch (error) {
+//     throw new Error(`HTTP error: ${error}`);
+//   }
+// };
 
 
 // async function fetchCountries(name) {
