@@ -1,5 +1,4 @@
 
-
 // const fetchCountries = debounce(async (searchQuery, callback) => {
 //   if (!searchQuery.trim()) 
 //   return; // якщо поле пошуку пусте, повернути порожній масив
