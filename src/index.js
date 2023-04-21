@@ -9,7 +9,7 @@ const searchBox = document.querySelector('#search-box');
 const countryList = document.querySelector('.country-list');
 const countryInfo = document.querySelector('.country-info');
 
-const url = `https://restcountries.com/v3.1/name/${searchBox}`;
+const url = `https://restcountries.com/v3.1/name/`;
 
 searchBox.addEventListener('input', debounce(onSearchInput, 300));
 
@@ -20,7 +20,7 @@ function onSearchInput(event) {
     return;
   }
 
-  fetch(`${url}${query}?fields=name,capital,population,flags.svg,languages`)
+  fetch(`${url}${query}?fields=name,capital,population,flags,languages`)
     .then(response => response.json())
     .then(data => {
       if (data.length > 10) {
@@ -68,7 +68,7 @@ function onCountryListClick(event) {
 
   const countryName = target.querySelector('span').textContent;
 
-  fetch(`${url}${countryName}?fields=name.official,capital,population;flags.svg,languages`)
+  fetch(`${url}${countryName}?fields=name.official,capital,population;flags,languages`)
     .then(response => response.json())
     .then(data => renderCountryInfo(data[0]))
     .catch(error => console.log(error));
