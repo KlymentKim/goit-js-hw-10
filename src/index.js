@@ -4,17 +4,19 @@ import axios from 'axios';
 import Notiflix from 'notiflix';
 import { fetchCountries } from './fetchCountries';
 
+const DEBOUNCE_DELAY = 300;
+const url = `https://restcountries.com/v3.1/name`;
 
-const searchBox = document.querySelector('#search-box');
+const searchBox = document.getElementById('search-box');
 const countryList = document.querySelector('.country-list');
 const countryInfo = document.querySelector('.country-info');
 
-const url = `https://restcountries.com/v3.1/name/`;
-
-searchBox.addEventListener('input', debounce(onSearchInput, 300));
+searchBox.addEventListener('input', debounce(onSearchInput, DEBOUNCE_DELAY));
 
 function onSearchInput(event) {
+  event.preventDefault();
   const query = event.target.value.trim();
+
   if (!query) {
     clearResults();
     return;
@@ -78,12 +80,12 @@ function onCountryListClick(event) {
 }
 
 function renderCountryInfo(country) {
-    preventDefault();
     countryInfo.innerHTML = `
     <h2>${country.name.official}</h2>
     <p>Capital: ${country.capital}</p>
     <p>Population: ${country.population}</p>
-     <p>Languages: ${country.languages.map((lang) => lang.name).join(', ')}</p>
+    <span class="country__span">${Object.values(languages).join(', ')}</span>
+     <p>Languages: ${Object.values(languages).join(', ')}</p>
     <img src="${country.flags.svg}" alt="${country.name.official}" width="128px" height="128px"/>
     `
 }
