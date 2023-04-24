@@ -2,7 +2,7 @@ import './css/styles.css';
 import debounce from 'lodash.debounce';
 import axios from 'axios';
 import Notiflix from 'notiflix';
-import { fetchCountries } from './fetchCountries';
+import { fetchCountries } from './api/fetchCountries';
 
 const DEBOUNCE_DELAY = 300;
 const url = `https://restcountries.com/v3.1/name`;
@@ -27,20 +27,20 @@ function onSearchInput(event) {
     .then(data => {
 
       if (data.length > 10) {
-        Notiflix.Notify.info('Too many matches found. Please enter a more specific name.');
-        renderCountryInfo(data[0]);
+        Notiflix.Notify.info(
+          'Too many matches found. Please enter a more specific name.');
+        renderCountryInfo(data);
         clearResults();
         return;
       }
-
-      if (data.length >= 2 && data.length <= 10) {
+       if (data.length >= 2 && data.length <= 10) {
         renderCountryList(data);
         return;
       }
 
          // Перевірка наявності результатів пошуку
-          if (data.length === 0) {
-        renderCountryList(data[0]);
+        if (data.length === 0) {
+        renderCountryList(data);
         Notiflix.Notify.failure('Oops, there is no country with that name');
         return;
       }
@@ -56,7 +56,7 @@ function clearResults() {
 }
 
 function renderCountryList(countries) {
-  countryInfo.innerHTML = '';
+  // countryInfo.innerHTML = '';
   countryList.innerHTML = countries.map(country => `
     <li>
       <img src="${country.flags.svg}" alt="${country.name.official}" width="32" height="32">
