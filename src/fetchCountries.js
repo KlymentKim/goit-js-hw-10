@@ -1,3 +1,12 @@
+// async function fetchCountries(name) {
+//   const response = await fetch(`https://restcountries.com/v3.1/name/${name}?fields=name,capital,population,languages,flags`);
+//   const data = await response.json();
+//   return data;
+// }
+
+// export { fetchCountries };
+
+
 // function fetchCountries(name) {
 //   return fetch(`https://restcountries.com/v2/name/${name}?fields=name.official,capital,population,flags.svg,languages`)
 //     .then(response => response.json())

@@ -78,12 +78,12 @@ function onCountryListClick(event) {
 }
 
 function renderCountryInfo(country) {
-    // countryList.innerHTML = '';
+    preventDefault();
     countryInfo.innerHTML = `
     <h2>${country.name.official}</h2>
     <p>Capital: ${country.capital}</p>
     <p>Population: ${country.population}</p>
-    <p>Languages: ${country.languages.map((lang) => lang.name).join(', ')}</p>
+     <p>Languages: ${country.languages.map((lang) => lang.name).join(', ')}</p>
     <img src="${country.flags.svg}" alt="${country.name.official}" width="128px" height="128px"/>
     `
 }
