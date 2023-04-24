@@ -38,12 +38,12 @@ function onSearchInput(event) {
 
          // Перевірка наявності результатів пошуку
           if (data.length === 0) {
-        renderCountryInfo(data[0]);
+        renderCountryList(data[0]);
         Notiflix.Notify.failure('Oops, there is no country with that name');
         return;
       }
 
-      // clearResults();
+       clearResults();
     })
     .catch(error => console.log(error));
 }
@@ -83,7 +83,7 @@ function renderCountryInfo(country) {
     <h2>${country.name.official}</h2>
     <p>Capital: ${country.capital}</p>
     <p>Population: ${country.population}</p>
-    <p>Language: ${languages}</p>
+    <p>Languages: ${country.languages.map((lang) => lang.name).join(', ')}</p>
     <img src="${country.flags.svg}" alt="${country.name.official}" width="128px" height="128px"/>
     `
 }
