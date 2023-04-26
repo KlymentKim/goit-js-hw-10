@@ -3,11 +3,11 @@ import { fetchCountries } from './fetchCountries';
 import debounce from 'lodash.debounce';
 import Notiflix from 'notiflix';
 
-const Input = document.querySelector('#search-box');
+const input = document.querySelector('#search-box');
 const countryList = document.querySelector('.country-list');
 const countryInfo = document.querySelector('.country-info');
 
-Input.addEventListener('input', debounce(handleSearchInput, 300));
+input.addEventListener('input', debounce(handleSearchInput, 300));
 
 async function handleSearchInput(event) {
     event.preventDefault();
@@ -15,7 +15,6 @@ async function handleSearchInput(event) {
   const searchQuery = event.target.value.trim();
   if (!searchQuery) {
     clearSearchResults();
-   
     return;
   }
   
@@ -40,12 +39,11 @@ async function handleSearchInput(event) {
             }
             // clearSearchResults();
         })
-      .catch(() => {
-      clearSearchResults();
-      Notiflix.Notify.failure('Oops, there is no country with that name');
-    });
+        .catch(() => {
+        clearSearchResults();
+        Notiflix.Notify.failure('Oops, there is no country with that name');
+      });
 }
-
 
 function renderCountryList(dataCountry) {
   const markup = dataCountry
