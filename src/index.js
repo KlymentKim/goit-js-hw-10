@@ -20,17 +20,12 @@ async function handleSearchInput(event) {
   
     fetchCountries(searchQuery)
         .then(countries => {
-            if (countries.length === 0) {
-                clearSearchResults();
-                Notiflix.Notify.failure('Type some name');
-                return;
-            }
             if (countries.length > 10) {
                 Notiflix.Notify.info('Too many matches found. Please enter a more specific name.');
        
             } else if (countries.length >= 2 && countries.length <= 10) {
-             clearSearchResults();
-              renderCountryList(countries);
+                clearSearchResults();
+                renderCountryList(countries);
             } else {
                 clearSearchResults();
                 renderCountryInfo(countries);
