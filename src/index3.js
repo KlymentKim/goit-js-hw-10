@@ -65,22 +65,19 @@ function renderCountryInfo(dataCountry) {
     const markup = dataCountry
         .reduce((acc, { name, capital, population, flags, languages }) => {
             return acc + `
-  <div class="country__flag">
-    <img class="country__img" src="${flags.svg}" alt="flag 
-     width="96" height="96">
-    <p class="country__name">${name.official}</p>
-  </div>
-  <ul class="country__info">
-      <li class="country__item"> <b>Capital</b>:
-    <span class="country__span">${capital}</span>
-      </li>
-      <li class="country__item"> <b>Population</b>:
-    <span class="country__span">${population}</span>
-      </li>
-      <li class="country__item"> <b>Languages</b>:
-    <span class="country__span">${Object.values(languages).join(', ')}</span>
-      </li>
-  </ul>`;
+       <img class="country__img" src="${flags.svg}" alt="flag width="96" height="96">
+        <p class="country__name"><h2>${name.official}</h2></p>
+        <ul class="country__info">
+            <li class="country__item"> <b>Capital: </b>:
+            <span class="country__span">${capital}</span>
+            </li>
+            <li class="country__item"> <b>Population: </b>:
+            <span class="country__span">${population}</span>
+            </li>
+            <li class="country__item"> <b>Languages: </b>:
+            <span class="country__span">${Object.values(languages).join(', ')}</span>
+            </li>
+        </ul>`;
         }, '');
 
 
