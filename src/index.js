@@ -40,13 +40,15 @@ async function handleSearchInput(event) {
 
 function renderCountryList(dataCountry) {
   const markup = dataCountry
-    .map(({ name, flags }) => {
-      return `<li class="country-list__item">
+    .reduce((acc,{ name, flags }) => {
+      return acc + `
+        <li class="country-list__item">
         <img class="country-list__img" src="${flags.svg}" alt="flag" 
          width="96" height="96" />
-        <p class="country-list__text">${name.official}</p>
-      </li>`;
-    }).join('');
+        <span class="country-list__text">${name.official}</span>
+        </li>
+        `;
+    },'');
     
   return countryList.insertAdjacentHTML('beforeend', markup);
 }

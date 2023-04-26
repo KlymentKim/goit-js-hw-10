@@ -19,7 +19,6 @@ body {
   margin-bottom: 16px;
 }
 
-
 .container {
   max-width: 800px;
   margin: 0 auto;
@@ -36,13 +35,17 @@ input[type="text"] {
   margin-bottom: 20px;
 }
 
-.country-list {
+.country-list{
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
+  justify-content: flex-start;
   list-style-type: none;
   padding: 0;
   margin: 0;
+  }
+  .country-list__text{
+    text-anchor: middle;
   }
 
 .country-item {
