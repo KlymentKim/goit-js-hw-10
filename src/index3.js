@@ -23,8 +23,8 @@ async function handleSearchInput(event) {
         .then(countries => {
             if (countries.length === 0) {
                 clearSearchResults();
-                Notiflix.Notify.failure('Oops, there is no country with that name');
-              return;
+                Notiflix.Notify.failure('Type some name');
+                return;
             }
             if (countries.length > 10) {
                 Notiflix.Notify.info('Too many matches found. Please enter a more specific name.');
@@ -42,7 +42,6 @@ async function handleSearchInput(event) {
         })
       .catch(() => {
       clearSearchResults();
-      
       Notiflix.Notify.failure('Oops, there is no country with that name');
     });
 }
@@ -63,9 +62,9 @@ function renderCountryList(dataCountry) {
 }
 
 function renderCountryInfo(dataCountry) {
-  const markup = dataCountry
-    .map(({ name, capital, population, flags, languages }) => {
-      return `
+    const markup = dataCountry
+        .reduce((acc, { name, capital, population, flags, languages }) => {
+            return acc + `
   <div class="country__flag">
     <img class="country__img" src="${flags.svg}" alt="flag 
      width="96" height="96">
@@ -82,8 +81,8 @@ function renderCountryInfo(dataCountry) {
     <span class="country__span">${Object.values(languages).join(', ')}</span>
       </li>
   </ul>`;
-    })
-    .join('');
+        }, '');
+
 
   return countryInfo.insertAdjacentHTML('beforeend', markup);
 }
