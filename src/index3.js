@@ -3,68 +3,91 @@ import { fetchCountries } from './fetchCountries';
 import debounce from 'lodash.debounce';
 import Notiflix from 'notiflix';
 
-const searchInput = document.querySelector('#search-box');
+const Input = document.querySelector('#search-box');
 const countryList = document.querySelector('.country-list');
 const countryInfo = document.querySelector('.country-info');
 
-searchInput.addEventListener('input', debounce(handleSearchInput, 300));
+Input.addEventListener('input', debounce(handleSearchInput, 300));
 
 async function handleSearchInput(event) {
+    event.preventDefault();
+
   const searchQuery = event.target.value.trim();
-  if (searchQuery === '') {
+  if (!searchQuery) {
     clearSearchResults();
+   
     return;
   }
-  try {
-    const countries = await fetchCountries(searchQuery);
-    if (countries.length === 0) {
+  
+    fetchCountries(searchQuery)
+        .then(countries => {
+            if (countries.length === 0) {
+                clearSearchResults();
+                Notiflix.Notify.failure('Oops, there is no country with that name');
+              return;
+            }
+            if (countries.length > 10) {
+                Notiflix.Notify.info('Too many matches found. Please enter a more specific name.');
+       
+            } else if (countries.length >= 2 && countries.length <= 10) {
+                renderCountryList(countries);
+                
+
+            } else {
+                clearSearchResults();
+                renderCountryInfo(countries);
+               
+            }
+            // clearSearchResults();
+        })
+      .catch(() => {
       clearSearchResults();
-      return;
-    }
-    if (countries.length > 10) {
-      Notiflix.Notify.info('Too many matches found. Please enter a more specific name.');
-      return;
-    }
-    renderCountryList(countries);
-  } catch (error) {
-    Notiflix.Notify.failure('Oops, something went wrong. Please try again later.');
-  }
+      
+      Notiflix.Notify.failure('Oops, there is no country with that name');
+    });
 }
 
+
+function renderCountryList(dataCountry) {
+  const markup = dataCountry
+    .map(({ name, flags }) => {
+      return `<li class="country-list__item">
+        <img class="country-list__img" src="${flags.svg}" alt="flag" 
+         width="96" height="96" />
+        <p class="country-list__text">${name.official}</p>
+      </li>`;
+    })
+        .join('');
+    
+  return countryList.insertAdjacentHTML('beforeend', markup);
+}
+
+function renderCountryInfo(dataCountry) {
+  const markup = dataCountry
+    .map(({ name, capital, population, flags, languages }) => {
+      return `
+  <div class="country__flag">
+    <img class="country__img" src="${flags.svg}" alt="flag 
+     width="96" height="96">
+    <p class="country__name">${name.official}</p>
+  </div>
+  <ul class="country__info">
+      <li class="country__item"> <b>Capital</b>:
+    <span class="country__span">${capital}</span>
+      </li>
+      <li class="country__item"> <b>Population</b>:
+    <span class="country__span">${population}</span>
+      </li>
+      <li class="country__item"> <b>Languages</b>:
+    <span class="country__span">${Object.values(languages).join(', ')}</span>
+      </li>
+  </ul>`;
+    })
+    .join('');
+
+  return countryInfo.insertAdjacentHTML('beforeend', markup);
+}
 function clearSearchResults() {
   countryList.innerHTML = '';
   countryInfo.innerHTML = '';
-}
-
-function renderCountryList(countries) {
-  countryList.innerHTML = '';
-  countries.forEach((country) => {
-    const countryItem = document.createElement('div');
-    countryItem.classList.add('country-item');
-    const flagImg = document.createElement('img');
-    flagImg.src = country.flags.svg;
-    flagImg.alt = `${country.name.official} flag`;
-    flagImg.classList.add('country-flag');
-    const countryName = document.createElement('p');
-    countryName.textContent = country.name.official;
-    countryItem.append(flagImg, countryName);
-    countryList.appendChild(countryItem);
-    countryItem.addEventListener('click', () => {
-      renderCountryInfo(country);
-    });
-  });
-}
-
-function renderCountryInfo(country) {
-   // const languages = country.languages.map((language) => language.name).join(', ');
-   countryInfo.innerHTML = `
-    <h2>${country.name.official}</h2>
-    <p>Capital: ${country.capital}</p>
-    <p>Population: ${country.population}</p>
-    <span class="country__span">${Object.values(languages).join(', ')}</span>
-     <p>Languages: ${Object.values(languages).join(', ')}</p>
-    <img src="${country.flags.svg}" alt="${country.name.official}" width="128px" height="128px"/>
-    `
-    
-    
 }
